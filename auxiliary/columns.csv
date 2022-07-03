@@ -1,0 +1,33 @@
+clave, variable
+R_DEF, Resultado de la entrevista
+CD_A, Ciudad
+ENT, Entidad
+H_MUD, Numero de veces que el hogar se ha mudado
+EDA, Edad
+UPM, Unidad Primaria de muestreo
+CON, Control
+P1A1, Actividades que generen ingresos
+P1A2, Ayudado en negocio Familiar
+P1A3, No trabajo
+P1B, Autoempleado
+P1C, Razones para no trabajar
+P2_1, Has tratado de buscar trabajo en otro pais
+P2_2, Has tratado de buscar trabajo en el pais
+P2_3, Has tratado de poner negocio
+P2A_MES, Mes en que empezaste a buscar trabajo
+P2A_ANIO, Año en que empezaste a buscar trabajo
+P3M1, Beneficio 1
+P3M2, Beneficio 2
+P3M3, Beneficio 3
+P3M4, Beneficio 4
+P3M5, Beneficio 5
+P3M6, Beneficio 6
+P3M7, Beneficio 7
+P3M8, Beneficio 8
+P3M9, Beneficio 9
+P3O, Tuviste que mudarte para tener o conservar este trabajo?
+P3P1, En donde vivias antes de este cambio?
+P3Q, Aproximadamente cuantas personas incluyendo al dueño trabajan
+P3R, Hace cuanto trabajas ahi
+P4A, SCIAN
+P4B, Area trabajo
