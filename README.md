@@ -9,4 +9,4 @@ You can read the manuscript of the article in the link: https://docs.google.com/
 
 ## Notebooks
 
-* [Load the dataset from url of ENOE](https://marionomics.com)
+* [Load the dataset from url of ENOE](https://github.com/marionomics/migracion-lgbt/blob/main/notebooks/extract_datasets.ipynb)

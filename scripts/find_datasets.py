@@ -5,7 +5,6 @@ def run():
     print("Inicio de la ejecución...")
     columns = read_csv("data/auxiliary/columns.csv").clave.to_list()
     columns = [x.lower() for x in columns]
-    print(columns)
     for encuesta in range(1,3):
         for year in range(10,21):
             for quarter in range(1,5):
