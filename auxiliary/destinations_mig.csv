@@ -1,0 +1,43 @@
+,CVE,DESCRIP
+0,1,Aguascalientes
+1,2,Baja California
+2,3,Baja California Sur
+3,4,Campeche
+4,5,Coahuila
+5,6,Colima
+6,7,Chiapas
+7,8,Chihuahua
+8,9,Ciudad de México
+9,10,Durango
+10,11,Guanajuato
+11,12,Guerrero
+12,13,Hidalgo
+13,14,Jalisco
+14,15,México
+15,16,Michoacán
+16,17,Morelos
+17,18,Nayarit
+18,19,Nuevo León
+19,20,Oaxaca
+20,21,Puebla
+21,22,Querétaro
+22,23,Quintana Roo
+23,24,San Luis Potosí
+24,25,Sinaloa
+25,26,Sonora
+26,27,Tabasco
+27,28,Tamaulipas
+28,29,Tlaxcala
+29,30,Veracruz
+30,31,Yucatán
+31,32,Zacatecas
+32,33,Entidad federativa no especificada
+33,100,Cualquier lugar de África
+34,200,Otro País de América
+35,221,Estados Unidos de América
+36,225,Guatemala
+37,300,Cualquier País de Asia
+38,400,Otro País de Europa
+39,415,España
+40,500,Cualquier País de Oceanía
+41,600,País no especificado

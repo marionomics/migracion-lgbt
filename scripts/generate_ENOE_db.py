@@ -14,7 +14,7 @@ for ruta in available:
     df_temp = pd.read_csv(ruta)
     interseccion = list(set(df_temp.columns) & set(columns))
     
-    if 'p3o' in interseccion:
+    if 'p3p1' in interseccion:
         print("p3o is in da house!")
         df_temp2 = pd.read_csv(ruta, usecols=interseccion)
         df_temp2['encuesta'] = ruta[13:14]
