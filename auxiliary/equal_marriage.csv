@@ -1,33 +1,33 @@
-cve,state, legal, year, month, day, resolution,notes
-1, ags, 1, 2019,8,16,1, Legalizado por resolucion. Congreso local no reformó el código civil
-2, bc, 1, 2021
-3, bcs, 1, 2019
-4, camp, 1, 2016, 5, 20, 0,
-5, coah, 1, 2014, 9, 17,0,
-6, col, 1, 2016
-7, chia, 1, 2018, 5,11,1, Legalizado por resolucion. Congreso local no reformó el código civil
-8, chih, 1, 2015, 6, 12, 1, Legalizado por resolucion. Congreso local no reformó el codigo civil
-9,cdmx, 1, 2010, 3, 4,0,
-10,dgo, 0,,,,,
-11,gto, 1, 2021
-12,grro,0,,,,,
-13,hgo, 1, 2019
-14,jal, 1, 2022
-15,mex, 0,,,,,
-16,mich, 1, 2016
-17,mor, 1, 2016
-18,nay, 1, 2015, 12, 23, 0,
-19,nl, 1, 2019
-20,oax, 1, 2019
-21,pue, 1, 2020
-22,qto, 1, 2021
-23,qroo, 1, 2012, 5, 3,0,
-24,slp, 1, 2019
-25,sin, 1, 2021
-26,son, 1, 2021
-27,tab,0,,,,,
-28,tam,0,,,,,
-29,tlax, 1, 2020
-30,ver, 1, 2022
-31,yuc, 1, 2022
-32,zac, 1, 2021
+cve,state,matrimonio,union_civil,adopcion,year,month,day,resolution,metodo,notas
+1, ags, 1,1,0, 2019,8,16,1, Decreto judicial,
+2, bc, 1,0,0, 2021,6,16,0, Estatuto legislativo y enmienda constitucional,
+3, bcs, 1,0,0, 2019,6,27,0, Estatuto legislativo,
+4, camp, 1,1,1, 2016, 5, 20, 0, Estatuto legislativo,
+5, coah, 1,1,1, 2014, 9, 17,0, Estatuto legislativo,
+6, col, 1,1,0, 2016,5,25,0, Estatuto legislativo,
+7, chia, 1,1,0, 2018, 5,11,1, Decreto judicial,
+8, chih, 1,1,1, 2015, 6, 12, 1, Decreto gubernativo,
+9,cdmx, 1,1,1, 2010, 3, 4,0, Estatuto legislativo y enmienda constitucional,
+10,dgo, 0,0,0,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
+11,gto, 1,0,0, 2021,12,20,0,Decisión de la Secretaría de Gobierno del Estado,
+12,grro,0,0,0,,,,,Decisión de la Secretaría de Gobierno del Estado, Se permite el matrimonio en cuatro municipios
+13,hgo, 1,1,0, 2019,5,24,0,Estatuto legislativo,
+14,jal, 1,1,0, 2022,4,9,0,Estatuto legislativo
+15,mex,0,0,0,,,,0,Se puede obtener por jurisprudenciavia judicial o amparo,
+16,mich, 1,1,1, 2016,6,23,0,Estatuto legislativo
+17,mor, 1,1,0, 2016,7,2,0,Estatuto legislativo y enmienda constitucional
+18,nay, 1,1,0, 2015, 12, 23, 0,Estatuto legislativo
+19,nl, 1,0,0, 2019,5,31,0,Decreto Judicial
+20,oax, 1,0,0, 2019,10,5,0,Estatuto legislativo
+21,pue, 1,0,0, 2020,11,11,0,Estatuto legislativo
+22,qto, 1,1,0, 2021,11,12,0,Estatuto legislativo
+23,qroo, 1,0,0, 2012, 5, 3,0,Decisión del secretario de estado
+24,slp, 1,1,0, 2019,5,17,0,Estatuto legislativo
+25,sin, 1,0,0, 2021,6,15,0,Estatuto legislativo
+26,son, 1,0,0, 2021,10,22,0,Estatuto legislativo
+27,tab,0,,,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
+28,tam,0,,,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
+29,tlax, 1,1,0, 2020,12,24,0,Estatuto legislativo
+30,ver, 1,1,1, 2022,6,13,0,Estatuto legislativo
+31,yuc, 1,0,0, 2022,3,2,0,Estatuto legislativo y enmienda constitucional
+32,zac, 1,0,0, 2021,12,30,0,Estatuto legislativo
