@@ -15,5 +15,9 @@ You can read the manuscript of the article in the link: https://docs.google.com/
 
 At some point during the research I had to filter all the datasets from ENOE, since not always I found the required element. So I decided to use a script to identify which datasets have the required colums. The list is found in `auxiliary/ENOE_available.csv`, and it can be run with script on `scripts/find_datasets.py`.
 
+The script `download_ENOE.py` gets the datasets from the appropriate urls in ENOE's "datos abiertos" area in the [website](https://www.inegi.org.mx/programas/enoe/15ymas/#Datos_abiertos) and places them on the folder `data`. The data is not included in the repository and has to be downloaded by using the script. If you notice that some datasets are missing you can always use the script `download_enoe_ind.py` to download datasets individually using the url. Be sure to change url, year and quarter.
+
+
+
 ## Data
 All raw data gets downloaded in `data` folder.

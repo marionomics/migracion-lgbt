@@ -17,7 +17,10 @@ def run():
     # Create paths
     paths = []
     def create_path(year, quarter):
-        path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t.csv"
+        if (year + quarter/5 < 2020.4):
+            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t.csv"
+        else:
+            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe1_enoen_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe1_enoen_"+str(year)+"_"+str(quarter)+"t.csv"
         return path
 
 
@@ -30,6 +33,7 @@ def run():
         df = pd.read_csv(create_path(year,quarter), usecols=interseccion) # This will load the data again, but only with the columns that we require. Ideally all of them.
 
         df2 = df.copy() # La data no se toca!
+        df2 = df2[df2['eda'] > 14]
         df2['p3o'][df2['p3o'] == " "] = np.NaN # Empty cells should be changed to NaN
         df2['p3o'] = 2- pd.to_numeric(df2['p3o']) # Transform to dummy 1 and 0
         df_enoe = df2.groupby(['ent']).p3o.mean() # Create dataset by state
@@ -54,7 +58,7 @@ def run():
         df_flujos.columns = columnas + ['cve', 'date']
         df_flujos['equal_marriage'] = np.where((df_flujos['date']<= df_flujos['year']+df_flujos['quarter']/5),1,0)
 
-        # Lista de los estados inclusivos en el año y trimestre en cuestion
+        # List of inclusive and non inclusive states
         inclusive_states = list(df_flujos[df_flujos['equal_marriage'] == 1].cve)
         inclusive_states = [str(i) for i in inclusive_states]
         non_inclusive_states = list(df_flujos[df_flujos['equal_marriage'] == 0].cve)
@@ -66,18 +70,33 @@ def run():
         df_migraciones['to_equal'] =[df_flujos[df_flujos['equal_marriage'] == 1][str(i)].sum() for i in range(1,33)]
         df_migraciones['from_equal'] = [df_flujos[df_flujos['cve'] == i][inclusive_states].sum().sum() for i in range(1,33)]
         df_migraciones['from_non_equal'] = [df_flujos[df_flujos['cve'] == i][non_inclusive_states].sum().sum() for i in range(1,33)]
+        df_migraciones = pd.merge(df_flujos[['cve','equal_marriage']],df_migraciones, left_on='cve',right_on='cve', how = 'left')
         #df_migraciones['date'] = year + quarter/5 # Maybe not needed
 
         # Left Join the Migrations to the table
         df_enoe = pd.merge(df_enoe,df_migraciones, left_on='ent',right_on='cve', how = 'left')
 
+        # Finally we are including an employment indicator
+        df2['p1'] = 2 - df['p1']
+        df3 = df2.groupby(['ent']).p1.mean()
+        df3 = df3.reset_index()
+
+        # Include the new variable by merging it with the main dataframe
+        df_enoe = pd.merge(df_enoe,df3, left_on='ent',right_on='ent', how = 'left')
+
         return df_enoe
     
-    
-    for year in range(2017,2018): # 2017-2023
+    df = pd.DataFrame()
+    for year in range(2017,2023): # 2017-2023
         for quarter in range(1,2): # 1-5
-            df = create_dataset(year, quarter)
-            df.to_csv('data/ENOE/final/lgbt_migration.csv')
+            try:
+                df_to_concatenate = create_dataset(year, quarter)
+                df = pd.concat([df, df_to_concatenate], ignore_index=True)
+                df.to_csv('data/ENOE/final/lgbt_migration.csv')
+                print('He concatenado con exito la base de datos de ' + str(year) + ' en el trimestre ' + str(quarter))
+            except Exception as e:
+                print("Hubo un error al concatenar la base de datos")
+                print(e)
     
     
 if __name__ == '__main__':
