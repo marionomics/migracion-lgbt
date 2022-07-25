@@ -66,8 +66,9 @@ def run():
 
         # Usamos la tabla de flujos para crear la base de datos de migraciones por estado
         df_migraciones = pd.DataFrame({'cve':range(1,33)})
-        df_migraciones['to_non_equal'] =[df_flujos[df_flujos['equal_marriage'] == 0][str(i)].sum() for i in range(1,33)]
-        df_migraciones['to_equal'] =[df_flujos[df_flujos['equal_marriage'] == 1][str(i)].sum() for i in range(1,33)]
+        # We will only use the migrations to the state, as the statistic is measuring to avoid double counting or miscasculations
+        #df_migraciones['to_non_equal'] =[df_flujos[df_flujos['equal_marriage'] == 0][str(i)].sum() for i in range(1,33)]
+        #df_migraciones['to_equal'] =[df_flujos[df_flujos['equal_marriage'] == 1][str(i)].sum() for i in range(1,33)]
         df_migraciones['from_equal'] = [df_flujos[df_flujos['cve'] == i][inclusive_states].sum().sum() for i in range(1,33)]
         df_migraciones['from_non_equal'] = [df_flujos[df_flujos['cve'] == i][non_inclusive_states].sum().sum() for i in range(1,33)]
         df_migraciones = pd.merge(df_flujos[['cve','equal_marriage']],df_migraciones, left_on='cve',right_on='cve', how = 'left')

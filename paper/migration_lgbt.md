@@ -7,7 +7,7 @@ Each state in Mexico has different rules for equal marriage. We exploit the diff
 
 ## How access to marriage can influence migration
 _dicuss current theory and propose a model_
-Sexual orientation and gender identity are still considered taboo in many countries. This leads to rejection, discrimination and abuse towards LGBT+ people in education, employment, health and even safety.
+Sexual orientation and gender identity are still considered taboo in many countries. This leads to rejection, discrimination and abuse towards LGBT+ people in areas such as education, employment, health and even safety.
 
 ## The legal battle over equal marriage in Mexico
 _here we explain the reader how same-sex marriage has been approved in Mexico over the years_

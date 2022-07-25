@@ -1,0 +1,1 @@
+path_discrimination = "data/ENDISEG_WEB/final/discrimination.csv"
