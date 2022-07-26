@@ -4,7 +4,7 @@ import pandas as pd
 columns = pd.read_csv("auxiliary/columns.csv").clave.to_list()
 columns = [x.lower() for x in columns]
 
-available = pd.read_csv("auxiliary/ENOE_available.csv", names = ['path']).path.to_list()
+available = pd.read_csv("auxiliary/coe1.csv", names = ['path']).path.to_list()
 
 
 df = pd.DataFrame()
@@ -15,7 +15,7 @@ for ruta in available:
     interseccion = list(set(df_temp.columns) & set(columns))
     
     if 'p3p1' in interseccion:
-        print("p3o is in da house!")
+        print("p3p1 is in da house!")
         df_temp2 = pd.read_csv(ruta, usecols=interseccion)
         df_temp2['encuesta'] = ruta[13:14]
         df_temp2['quarter'] = ruta[15:16]

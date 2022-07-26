@@ -1,10 +1,25 @@
 library(tidyverse)
 
 df <- read.csv("data/ENOE/final/lgbt_migration.csv")
-equal_marriage <- read.csv("auxiliary/equal_marriage.csv")
-head(equal_marriage)
+#equal_marriage <- read.csv("auxiliary/equal_marriage.csv")
+#head(equal_marriage)
 
-head(df)
+path_lgbt = "data/ENDISEG_WEB/final/lgbt.csv"
+lgbt <- read.csv(path_lgbt)
+
+path_discrimination = "data/ENDISEG_WEB/final/discrimination.csv"
+discrimination <- read.csv(path_discrimination)
+
+path_states <- "auxiliary/states.csv"
+states <- read.csv(path_states)
+
+
+df %>%
+    left_join(equal_marriage)
+    head()
+
+
+
 
 # Primer modelo...
 

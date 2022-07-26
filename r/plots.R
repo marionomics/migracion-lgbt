@@ -1,5 +1,6 @@
 library(tidyverse)
 
+
 df <- read.csv("data/ENOE/final/lgbt_migration.csv")
 
 # Auxiliary datasets
@@ -77,11 +78,15 @@ lgbt <- read.csv(path_lgbt)
 lgbt <- lgbt %>%
     left_join(states, by = c("ent" = "cve"))
 
+png(filename="img/lgbt.png")
 lgbt %>%
     mutate(above_average = ifelse(percentage_lgbt > mean(percentage_lgbt),1,0)) %>%
     ggplot(aes(x = state, y =percentage_lgbt, fill = factor(above_average)))+
     geom_bar(stat = "identity") +
     geom_hline(yintercept = mean(lgbt$percentage_lgbt), linetype = 3)+
+    labs(x = "State", y = "Percentage of LGBT+ respondents", fill = "Group")+
+    scale_fill_manual(values = c('#bbbbbb', '#a3a3a3'),
+                        labels = c("Below average","Above average"))+
     coord_flip() +
     theme_minimal()
-
+dev.off()

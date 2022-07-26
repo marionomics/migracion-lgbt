@@ -8,8 +8,8 @@ from io import BytesIO
 
 
 def run():
-    url = "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2022/conjunto_de_datos_enoen_2022_1t_csv.zip"
-    year = 2022
+    url = "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2018/2018_trim1_enoe_csv.zip"
+    year = 2018
     quarter = 1
 
     try:
