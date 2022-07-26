@@ -9,7 +9,7 @@ available = pd.read_csv("auxiliary/coe1.csv", names = ['path']).path.to_list()
 
 df = pd.DataFrame()
 
-for ruta in available:
+for ruta in available:# Change this for year and quarter to match both questionnaires 
     print('procesando ' + ruta)
     df_temp = pd.read_csv(ruta)
     interseccion = list(set(df_temp.columns) & set(columns))

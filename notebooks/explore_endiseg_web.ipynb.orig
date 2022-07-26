@@ -630,7 +630,11 @@
   },
   {
    "cell_type": "code",
+<<<<<<< HEAD
    "execution_count": 13,
+=======
+   "execution_count": 184,
+>>>>>>> 374c1d72b60fa641ce4f9b7d500e37ff56fb4b3b
    "metadata": {},
    "outputs": [
     {
@@ -925,7 +929,11 @@
        "31  32.0   2.0    73.0  0.026667"
       ]
      },
+<<<<<<< HEAD
      "execution_count": 13,
+=======
+     "execution_count": 184,
+>>>>>>> 374c1d72b60fa641ce4f9b7d500e37ff56fb4b3b
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -939,7 +947,11 @@
   },
   {
    "cell_type": "code",
+<<<<<<< HEAD
    "execution_count": 15,
+=======
+   "execution_count": 185,
+>>>>>>> 374c1d72b60fa641ce4f9b7d500e37ff56fb4b3b
    "metadata": {},
    "outputs": [],
    "source": [
@@ -948,6 +960,7 @@
   },
   {
    "cell_type": "code",
+<<<<<<< HEAD
    "execution_count": 16,
    "metadata": {},
    "outputs": [],
@@ -957,10 +970,14 @@
   },
   {
    "cell_type": "code",
+=======
+>>>>>>> 374c1d72b60fa641ce4f9b7d500e37ff56fb4b3b
    "execution_count": null,
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "df4.to_csv('../data/ENDISEG_WEB/final/lgbt.csv')"
+   ]
   }
  ],
  "metadata": {
