@@ -15,12 +15,13 @@ def run():
     marriage = marriage[['cve','date']]
 
     # Create paths
-    paths = []
-    def create_path(year, quarter):
+    paths1 = []
+    paths2 = []
+    def create_path(year, quarter, questionnaire):
         if (year + quarter/5 < 2020.4):
-            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe1_enoe_"+str(year)+"_"+str(quarter)+"t.csv"
+            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe" + str(questionnaire) + "_enoe_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe" + str(questionnaire) + "_enoe_"+str(year)+"_"+str(quarter)+"t.csv"
         else:
-            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe1_enoen_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe1_enoen_"+str(year)+"_"+str(quarter)+"t.csv"
+            path = "data/ENOE/raw/"+str(year)+"t"+str(quarter)+"/conjunto_de_datos_coe" + str(questionnaire) + "_enoen_"+str(year)+"_"+str(quarter)+"t/conjunto_de_datos/conjunto_de_datos_coe" + str(questionnaire) + "_enoen_"+str(year)+"_"+str(quarter)+"t.csv"
         return path
 
 
@@ -28,9 +29,17 @@ def run():
     # Create dataset
     def create_dataset(year,quarter):
         # Load dataset and reduce the number of columns for the ones that we really need
-        df = pd.read_csv(create_path(year,quarter))
-        interseccion = list(set(df.columns) & set(columns)) # To avoid any problems in loading the data
-        df = pd.read_csv(create_path(year,quarter), usecols=interseccion) # This will load the data again, but only with the columns that we require. Ideally all of them.
+        df1 = pd.read_csv(create_path(year,quarter,1))
+        df2 = pd.read_csv(create_path(year,quarter,2))
+
+        interseccion1 = list(set(df1.columns) & set(columns)) # To avoid any problems in loading the data
+        interseccion2 = list(set(df2.columns) & set(columns))
+
+        df1 = pd.read_csv(create_path(year,quarter,1), usecols=interseccion1) # This will load the data again, but only with the columns that we require. Ideally all of them.
+        df2 = pd.read_csv(create_path(year,quarter,2), usecols=interseccion2)
+
+        intersection = list(set(df1.columns.to_list()) & set(df2.columns.to_list()))
+        df = pd.merge(df1, df2, how="left", left_on=intersection, right_on=intersection)
 
         df2 = df.copy() # La data no se toca!
         df2 = df2[df2['eda'] > 14]
@@ -84,6 +93,13 @@ def run():
 
         # Include the new variable by merging it with the main dataframe
         df_enoe = pd.merge(df_enoe,df3, left_on='ent',right_on='ent', how = 'left')
+
+        # Let's try the same but for an indicator of mean income in the state
+        df2['p6b2'][df2['p6b2'] == " "] = np.NaN
+        df2.p6b2 = pd.to_numeric(df2.p6b2)
+
+        df4 = df2.groupby(['ent']).p6b2.mean()
+        df_enoe = pd.merge(df_enoe, df4, left_on="ent", right_on="ent", how = "left")
 
         return df_enoe
     

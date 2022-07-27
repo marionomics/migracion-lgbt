@@ -2,6 +2,13 @@ clave, variable
 FAC, Factor de expansión
 P1, La semana pasada trabajo por lo menos una hora?
 R_DEF, Resultado de la entrevista
+N_PRO_VIV, Numero progresivo de la vivienda
+V_SEL, Vivienda seleccionada
+N_HOG, Numero de hogar
+N_ENT, Numero de entrevista o visita
+N_REN, Numero de renglon
+N_INF, Numero de informante
+PER, Periodo
 CD_A, Ciudad
 ENT, Entidad
 H_MUD, Numero de veces que el hogar se ha mudado
@@ -34,3 +41,5 @@ P3Q, Aproximadamente cuantas personas incluyendo al dueño trabajan
 P3R, Hace cuanto trabajas ahi
 P4A, SCIAN
 P4B, Area trabajo
+P6B2, Cantidad en pesos
+P6C, La cantidad que obtiene al mes por su trabajo es en salarios minimos
