@@ -25,17 +25,17 @@ df2 <- df %>%
     left_join(discrimination[,c(2,5)], by = "cve")
 
 # Add time as time
-df2$date <- as.Date(ISOdate(df3$year, 1, 1))
-df2$fecha <- df2$year + df2$quarter/5
+#df2$date <- as.Date(ISOdate(df3$year, 1, 1))
+#df2$fecha <- df2$year + df2$quarter/5
 
 df2$ratio[is.na(df2$ratio)] <- 0
 
 df2 <- df2 %>%
-    subset(select = c("ent", "date", "year", "quarter", "migr", "equal_marriage","from_equal", "from_non_equal", "p1", "p6b2", "percentage_lgbt", "ratio"))
+    subset(select = c("ent", "year", "migr", "equal_marriage","from_equal", "from_non_equal", "p1", "p6b2", "percentage_lgbt", "ratio"))
     
 # Balance and demean panel data
 df3 <- df2 %>%
-    arrange(ent, date) %>% # acomodar en caso de que se haya desacomodado en algún punto 
+    arrange(ent, year) %>% # acomodar en caso de que se haya desacomodado en algún punto 
     #make.pbalanced(balance.type = "shared.individuals") %>% # El panel ya esta balanceado
     mutate(
         dm_migr = migr - ave(migr, ent),

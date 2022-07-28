@@ -1,3 +1,5 @@
+library(estimatr)
+
 source("r/transform_database.R")
 
 names(df3) <- c("ent", "year", "migr", "equal_marriage",
