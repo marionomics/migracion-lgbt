@@ -36,12 +36,35 @@ df2 <- df2 %>%
 # Balance and demean panel data
 df3 <- df2 %>%
     arrange(ent, year) %>% # acomodar en caso de que se haya desacomodado en algún punto 
-    #make.pbalanced(balance.type = "shared.individuals") %>% # El panel ya esta balanceado
+    make.pbalanced(balance.type = "shared.individuals") %>%
     mutate(
         dm_migr = migr - ave(migr, ent),
         dm_unemp = p1 - ave(p1, ent),
         dm_income = p1 - ave(p1, ent)
     )
 
-df3 %>%
+## Agregar vivienda
+
+shf <- readxl::read_excel("data/SHF_Vivienda/Indice SHF datos abiertos 1_trim_2022.xlsx")
+
+global <- c("Nacional", "Nueva", "Usada",
+            "Casa sola", "Casa en condominio - depto.",
+            "Económica - Social", "Media - Residencial",
+            "ZM Valle México", "ZM Guadalajara",
+            "ZM Monterrey", "ZM PueblaTlax", "ZM Toluca",
+            "ZM Tijuana", "ZM León", "ZM Querétaro")
+
+states
+shf2 <- shf %>% 
+    filter(Trimestre == 1) %>%
+    filter(Año %in% 2017:2022)%>%
+    filter(!Global %in% global) %>%
+    filter(is.na(Municipio)) %>%
+    select(c("Estado", "Indice")) %>%
+    left_join(states[,c(1,3)], by = c("Estado" = "state"))
+
+df4 <- df3 %>%
+    left_join(shf2, by =c("ent" = "cve"))
+
+df4 %>%
     head()

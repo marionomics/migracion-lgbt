@@ -5,7 +5,7 @@ equal_marriage <- equal_marriage[,c(1,6)]
 names(equal_marriage) <- c("cve", "year_em")
 #equal_marriage$year[is.na(equal_marriage$year)] <- 0
 
-
+png(filename="img/migration_lgbt.png")
 df3 %>%
     left_join(equal_marriage, by = c("ent" = "cve")) %>%
     mutate(norm_year = year - year_em) %>%
@@ -16,5 +16,6 @@ df3 %>%
     geom_line(aes(y = from_equal), size = 0.9)+
     geom_line(aes(y = from_non_equal), linetype = 4)+
     geom_vline(xintercept = 0)+
-    labs(x = "Time")+
+    labs(x = "Time", y = "Migration")+
     theme_light()
+dev.off()
