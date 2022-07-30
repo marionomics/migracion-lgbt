@@ -18,9 +18,13 @@ summary(dd_model_from_equal)
 
 
 dd_model_from_non_equal <- lm_robust(from_non_equal ~ equal_marriage + dm_unemp + 
-            lgbt + discrim + dm_migr + covid + Vivienda,
-            data = df4,
+            lgbt + discrim + dm_migr,
+            data = df3,
             weights = ent,
             clusters = equal_marriage
 )
 summary(dd_model_from_non_equal)
+
+
+
+dd_model_from_equal[2]
