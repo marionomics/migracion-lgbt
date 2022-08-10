@@ -14,20 +14,20 @@ cve,state,matrimonio,union_civil,adopcion,year,month,day,resolution,metodo,notas
 13,hgo, 1,1,0, 2019,5,24,0,Estatuto legislativo,
 14,jal, 1,1,0, 2022,4,9,0,Estatuto legislativo,
 15,mex,0,0,0,,,,0,Se puede obtener por jurisprudenciavia judicial o amparo,
-16,mich, 1,1,1, 2016,6,23,0,Estatuto legislativo
-17,mor, 1,1,0, 2016,7,2,0,Estatuto legislativo y enmienda constitucional
-18,nay, 1,1,0, 2015, 12, 23, 0,Estatuto legislativo
-19,nl, 1,0,0, 2019,5,31,0,Decreto Judicial
-20,oax, 1,0,0, 2019,10,5,0,Estatuto legislativo
-21,pue, 1,0,0, 2020,11,11,0,Estatuto legislativo
+16,mich, 1,1,1, 2016,6,23,0,Estatuto legislativo,
+17,mor, 1,1,0, 2016,7,2,0,Estatuto legislativo y enmienda constitucional,
+18,nay, 1,1,0, 2015, 12, 23, 0,Estatuto legislativo,
+19,nl, 1,0,0, 2019,5,31,0,Decreto Judicial,
+20,oax, 1,0,0, 2019,10,5,0,Estatuto legislativo,
+21,pue, 1,0,0, 2020,11,11,0,Estatuto legislativo,
 22,qto, 1,1,0, 2021,11,12,0,Estatuto legislativo
-23,qroo, 1,0,0, 2012, 5, 3,0,Decisión del secretario de estado
-24,slp, 1,1,0, 2019,5,17,0,Estatuto legislativo
-25,sin, 1,0,0, 2021,6,15,0,Estatuto legislativo
-26,son, 1,0,0, 2021,10,22,0,Estatuto legislativo
+23,qroo, 1,0,0, 2012, 5, 3,0,Decisión del secretario de estado,
+24,slp, 1,1,0, 2019,5,17,0,Estatuto legislativo,
+25,sin, 1,0,0, 2021,6,15,0,Estatuto legislativo,
+26,son, 1,0,0, 2021,10,22,0,Estatuto legislativo,
 27,tab,0,,,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
 28,tam,0,,,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
-29,tlax, 1,1,0, 2020,12,24,0,Estatuto legislativo
-30,ver, 1,1,1, 2022,6,13,0,Estatuto legislativo
-31,yuc, 1,0,0, 2022,3,2,0,Estatuto legislativo y enmienda constitucional
-32,zac, 1,0,0, 2021,12,30,0,Estatuto legislativo
+29,tlax, 1,1,0, 2020,12,24,0,Estatuto legislativo,
+30,ver, 1,1,1, 2022,6,13,0,Estatuto legislativo,
+31,yuc, 1,0,0, 2022,3,2,0,Estatuto legislativo y enmienda constitucional,
+32,zac, 1,0,0, 2021,12,30,0,Estatuto legislativo,
