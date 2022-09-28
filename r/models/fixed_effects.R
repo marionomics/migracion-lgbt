@@ -25,6 +25,7 @@ model_fe <- lm_robust(formula = fe_formula,
 
 summary(model_fe)
 
+
 fe_formula_ne <- as.formula("from_non_equal ~ equal_marriage + dm_unemp + ent + lgbt + discrim + Vivienda")
 
 model_fe_ne <- lm_robust(formula = fe_formula_ne,
@@ -37,6 +38,14 @@ summary(model_fe)
 
 
 stargazer::stargazer(model_fe)
+model_fe %>%
+    tidy %>%
+    xtable::xtable()
+
+
+model_fe_ne %>%
+    tidy %>%
+    xtable::xtable()
 
 
 ############ Con libreria plm

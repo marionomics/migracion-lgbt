@@ -1,0 +1,62 @@
+% latex table generated in R 3.6.3 by xtable 1.8-4 package
+% Thu Aug  4 13:32:19 2022
+
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{Brief Article}
+\author{The Author}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{rlrrrrrrrl}
+      \hline
+     & term & estimate & std.error & statistic & p.value & conf.low & conf.high & df & outcome \\ 
+      \hline
+    1 & equal\_marriage & 54.31 & 1.95 & 27.79 & 0.00 & 50.47 & 58.14 & 1068.00 & from\_equal \\ 
+      2 & dm\_unemp & 632.58 & 82.64 & 7.65 & 0.00 & 470.43 & 794.74 & 1068.00 & from\_equal \\ 
+      3 & ent & 0.33 & 0.09 & 3.65 & 0.00 & 0.15 & 0.51 & 1068.00 & from\_equal \\ 
+      4 & lgbt & -50.66 & 5.39 & -9.41 & 0.00 & -61.23 & -40.09 & 1068.00 & from\_equal \\ 
+      5 & discrim & -77.79 & 37.42 & -2.08 & 0.04 & -151.22 & -4.35 & 1068.00 & from\_equal \\ 
+      6 & Vivienda & 0.05 & 0.04 & 1.27 & 0.20 & -0.03 & 0.14 & 1068.00 & from\_equal \\ 
+       \hline
+    \end{tabular}
+    \end{table}
+    > model_fe_ne %>%
+    +     tidy %>%
+    +     xtable::xtable()
+    % latex table generated in R 3.6.3 by xtable 1.8-4 package
+    % Thu Aug  4 13:37:27 2022
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{rlrrrrrrrl}
+      \hline
+     & term & estimate & std.error & statistic & p.value & conf.low & conf.high & df & outcome \\ 
+      \hline
+    1 & equal\_marriage & -30.46 & 2.67 & -11.39 & 0.00 & -35.71 & -25.21 & 1068.00 & from\_non\_equal \\ 
+      2 & dm\_unemp & 275.03 & 161.92 & 1.70 & 0.09 & -42.68 & 592.75 & 1068.00 & from\_non\_equal \\ 
+      3 & ent & 1.19 & 0.16 & 7.61 & 0.00 & 0.88 & 1.49 & 1068.00 & from\_non\_equal \\ 
+      4 & lgbt & -31.52 & 7.94 & -3.97 & 0.00 & -47.09 & -15.95 & 1068.00 & from\_non\_equal \\ 
+      5 & discrim & 269.51 & 69.58 & 3.87 & 0.00 & 132.99 & 406.03 & 1068.00 & from\_non\_equal \\ 
+      6 & Vivienda & -0.02 & 0.08 & -0.20 & 0.84 & -0.17 & 0.14 & 1068.00 & from\_non\_equal \\ 
+       \hline
+    \end{tabular}
+\end{table}
+
+
+\end{document}  
