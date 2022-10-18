@@ -8,7 +8,7 @@ cve,state,matrimonio,union_civil,adopcion,year,month,day,resolution,metodo,notas
 7, chia, 1,1,0, 2018, 5,11,1, Decreto judicial,
 8, chih, 1,1,1, 2015, 6, 12, 1, Decreto gubernativo,
 9,cdmx, 1,1,1, 2010, 3, 4,0, Estatuto legislativo y enmienda constitucional,
-10,dgo, 0,0,0,,,,,Se puede obtener por jurisprudenciavia judicial o amparo,
+10,dgo, 1,1,0, 2022,9,19,0,Se puede obtener por jurisprudenciavia judicial o amparo,
 11,gto, 1,0,0, 2021,12,20,0,Decisión de la Secretaría de Gobierno del Estado,
 12,grro,0,0,0,,,,,Decisión de la Secretaría de Gobierno del Estado, Se permite el matrimonio en cuatro municipios
 13,hgo, 1,1,0, 2019,5,24,0,Estatuto legislativo,

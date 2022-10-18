@@ -19,6 +19,20 @@ df4 %>%
     geom_line(aes(linetype = variable)) +
     geom_vline(xintercept = 0)+
     labs(x = "Time", y = "Migration")+
-    scale_linetype_manual(name = "Source", values = c("solid", "dashed"), labels = c("From States with EM", "From States without EM"))+
+    scale_linetype_manual(name = "Source", values = c("solid", "dashed"), labels = c("with EM", "without EM"))+
     theme_light()
 dev.off()
+
+
+####################################
+
+df4 %>%
+    left_join(equal_marriage, by = c("ent" = "cve")) %>%
+    mutate(norm_year = year - year_em) %>%
+    group_by(norm_year) %>%
+    mutate(from_equal = mean(from_equal),
+            from_non_equal = mean(from_non_equal)) %>%
+    select(c("ent", "norm_year", "from_equal", "from_non_equal")) %>%
+    reshape2::melt(id.vars = c("ent", "norm_year"), ) %>%
+    ggplot(aes(x = norm_year, y = value))+
+    geom_line(aes(linetype = variable))
