@@ -132,3 +132,4 @@ dmypy.json
 # Documentacion
 documentacion_enoe/
 data/
+.Rproj.user
