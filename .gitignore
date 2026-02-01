@@ -133,3 +133,11 @@ dmypy.json
 documentacion_enoe/
 data/
 .Rproj.user
+
+# macOS
+.DS_Store
+
+# R
+*.RData
+.RData
+.Rhistory
