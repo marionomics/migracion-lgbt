@@ -132,6 +132,18 @@ dmypy.json
 # Documentacion
 documentacion_enoe/
 data/
+# Track final analysis-ready datasets for reproducibility
+!data/ENOE/
+data/ENOE/*
+!data/ENOE/final/
+data/ENOE/final/*
+!data/ENOE/final/lgbt_migration.csv
+!data/ENDISEG_WEB/
+data/ENDISEG_WEB/*
+!data/ENDISEG_WEB/final/
+data/ENDISEG_WEB/final/*
+!data/ENDISEG_WEB/final/lgbt.csv
+!data/ENDISEG_WEB/final/discrimination.csv
 .Rproj.user
 
 # macOS
