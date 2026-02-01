@@ -42,8 +42,10 @@ Using the 2021 ENDISEG survey, we compare the geographic distribution of LGB+ yo
 
 ## Data Sources
 
-- **ENOE** (Encuesta Nacional de Ocupacion y Empleo), 2017--2022, INEGI
-- **ENDISEG** (Encuesta Nacional sobre Diversidad Sexual y de Genero), 2021, INEGI
+- **ENOE** (Encuesta Nacional de Ocupacion y Empleo), 2017--2022, INEGI -- [variable codebook](Notes/ENOE_codebook.md)
+- **ENDISEG** (Encuesta Nacional sobre Diversidad Sexual y de Genero), 2021, INEGI -- [variable codebook](Notes/ENDISEG_codebook.md)
+
+For download instructions, survey design details, and auxiliary data descriptions, see [Notes/data_sources.md](Notes/data_sources.md).
 
 ## Project Structure
 
@@ -70,11 +72,13 @@ migracion-lgbt/
 ├── tables/                # Output tables
 ├── img/                   # Output figures
 ├── archive/               # Superseded scripts (see archive/README.md)
-├── Notes/                 # Research notes
+├── Notes/                 # Documentation (codebooks, methodology, data sources)
 └── public/                # Public-facing materials
 ```
 
 ## Replication
+
+For detailed methodology, model specifications, and important caveats, see [Notes/methodology.md](Notes/methodology.md).
 
 ### Prerequisites
 
@@ -83,18 +87,82 @@ migracion-lgbt/
 pip install -r requirements.txt
 ```
 
-**R** packages:
+**R** (4.0+):
 ```r
 install.packages(c("tidyverse", "survey", "scales", "ggthemes",
-                    "strucchange", "fixest", "bacondecomp", "haven", "lfe"))
+                    "strucchange", "fixest", "bacondecomp", "haven", "lfe",
+                    "estimatr", "plm", "readxl"))
 ```
 
-### Steps
+### Step 1: Download ENOE microdata
 
-1. **Download data** (Python): run `scripts/01_download_ENOE.py` from the project root. This populates `data/`.
-2. **Build dataset** (Python): run `scripts/02_create_dataset.py` to produce `data/ENOE/final/lgbt_migration.csv`.
-3. **R analysis**: open `migracion-lgbt.Rproj` in RStudio and run scripts in `analysis/` in numbered order (01 through 05).
-4. **Figures** (Python): run `scripts/03_plot_migration.py`, `04_timeline.py`, and `05_time_map.py` for Python-generated plots. R scripts in `analysis/` also produce figures saved to `img/`.
+From the project root:
+
+```bash
+python scripts/01_download_ENOE.py
+```
+
+This downloads quarterly ENOE ZIPs from INEGI (2017--2022) and extracts them into `data/ENOE/raw/`. Files are ~200 MB per quarter; the full download is approximately 5 GB. The script skips quarters that have already been downloaded.
+
+### Step 2: Download ENDISEG microdata (manual)
+
+ENDISEG must be downloaded manually from INEGI:
+
+1. Go to <https://www.inegi.org.mx/programas/endiseg/2021/#microdatos>
+2. Download the CSV version of the thematic module ("Tmodulo")
+3. Extract the contents to `data/conjunto_de_datos_endiseg_2021_csv/`
+
+The R scripts expect the file at:
+```
+data/conjunto_de_datos_endiseg_2021_csv/conjunto_de_datos_tmodulo_endiseg_2021/conjunto_de_datos/conjunto_de_datos_tmodulo_endiseg_2021.csv
+```
+
+### Step 3: Build the analysis dataset
+
+```bash
+python scripts/02_create_dataset.py
+```
+
+This reads raw ENOE CSVs, merges questionnaire parts, computes migration and employment indicators per state-quarter, and writes `data/ENOE/final/lgbt_migration.csv`. See [Notes/ENOE_codebook.md](Notes/ENOE_codebook.md) for variable definitions.
+
+### Step 4: Run R analysis
+
+Open `migracion-lgbt.Rproj` in RStudio (this sets the working directory to the project root so all relative paths resolve correctly). Then run scripts in order:
+
+| Script | Input | Output | Notes |
+|--------|-------|--------|-------|
+| `analysis/01_endiseg.R` | ENDISEG microdata | `img/figure1_prevalence.png`, `img/figure2_structural_immobility.png` | Load ENDISEG CSV into the `endiseg` variable before running. Uses survey weights. |
+| `analysis/02_gold_standard.R` | ENDISEG microdata | `img/figure_gold_standard.png`, `img/figure_comparison.png` | Stricter treatment definition (4 states with full rights). |
+| `analysis/03_did2x2.R` | ENDISEG microdata | `img/did_plot.png` | 2x2 DiD comparing LGB+ vs heterosexual youth-to-adult gaps. |
+| `analysis/04_struc_change.R` | `data/ENOE/final/lgbt_migration.csv` | Structural break results, event study plot | Chow test + fixest event study on ENOE panel. |
+| `analysis/05_staggered_did.R` | Built by `r/transform_database.R` | Bacon decomposition, fixed-effects estimates | Sources `r/transform_database.R` internally; requires ENOE + ENDISEG + SHF data. |
+
+**Important**: Scripts 01--03 require the ENDISEG microdata to be loaded into the R environment as `endiseg` before execution. You can do this with:
+
+```r
+endiseg <- read.csv("data/conjunto_de_datos_endiseg_2021_csv/conjunto_de_datos_tmodulo_endiseg_2021/conjunto_de_datos/conjunto_de_datos_tmodulo_endiseg_2021.csv")
+```
+
+All ENDISEG analyses use INEGI expansion factors via the `survey` package. See [Notes/data_sources.md](Notes/data_sources.md) for why this is critical.
+
+### Step 5: Generate Python figures
+
+```bash
+python scripts/03_plot_migration.py   # Migration trend plot
+python scripts/04_timeline.py         # Policy timeline (SSM, civil union, adoption by state)
+python scripts/05_time_map.py         # Choropleth map of legalization years
+```
+
+These read from `data/ENOE/final/lgbt_migration.csv` and/or hardcoded reference data. Output goes to `img/`.
+
+## Documentation
+
+| File | Contents |
+|------|----------|
+| [Notes/data_sources.md](Notes/data_sources.md) | Where to obtain ENOE and ENDISEG, auxiliary data descriptions, survey weight requirements |
+| [Notes/ENOE_codebook.md](Notes/ENOE_codebook.md) | ENOE variable definitions, migration questions, constructed variables |
+| [Notes/ENDISEG_codebook.md](Notes/ENDISEG_codebook.md) | ENDISEG variable definitions, orientation coding, treatment definitions |
+| [Notes/methodology.md](Notes/methodology.md) | Model specifications, identification strategy, econometric details, caveats |
 
 ## License
 
