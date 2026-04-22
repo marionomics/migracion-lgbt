@@ -19,7 +19,7 @@ df4 <- df4 %>%
 
 ########################################################
 
-fe_formula <- as.formula("from_equal ~ equal_marriage + dm_unemp + ent + lgbt + discrim + Vivienda")
+fe_formula <- as.formula("from_equal ~ equal_marriage + dm_unemp + lgbt + discrim + Vivienda")
 
 model_fe <- lm_robust(formula = fe_formula,
                     data = df4,
@@ -30,7 +30,7 @@ model_fe <- lm_robust(formula = fe_formula,
 summary(model_fe)
 
 
-fe_formula_ne <- as.formula("from_non_equal ~ equal_marriage + dm_unemp + ent + lgbt + discrim + Vivienda")
+fe_formula_ne <- as.formula("from_non_equal ~ equal_marriage + dm_unemp + lgbt + discrim + Vivienda")
 
 model_fe_ne <- lm_robust(formula = fe_formula_ne,
                     data = df4,
@@ -38,7 +38,7 @@ model_fe_ne <- lm_robust(formula = fe_formula_ne,
                     weights = ent,
                     se_type = "stata")
 
-summary(model_fe)
+summary(model_fe_ne)
 
 
 ## Export initial models
@@ -140,3 +140,41 @@ m5 <- lm(fe_formula5, data = df4)
 ## The effect on employment
 
 df4
+
+#### Heteroskedasticity test
+
+bp_test <- lmtest::bptest(model_fe)
+print(bp_test)
+
+bp_test_ne <- lmtest::bptest(model_fe_ne)
+print(bp_test_ne)
+
+
+# Estimate the model using lm()
+model_lm <- lm(formula = fe_formula, data = df4)
+model_lm_ne <- lm(formula = fe_formula_ne, data = df4)
+
+# Calculate heteroskedasticity-robust standard errors
+robust_se <- sqrt(diag(vcovHC(model_lm)))
+robust_se <- sqrt(diag(vcovHC(model_lm_ne)))
+
+lmtest::coeftest(model_lm, vcov = vcovHC(model_lm))
+lmtest::coeftest(model_lm_ne, vcov = vcovHC(model_lm_ne))
+
+
+##############
+# Use the Hausman test to justify the use of fixed effects
+
+df6 <- df4 %>%
+  group_by(ent, year) %>%
+  summarise_all(mean, na.rm = TRUE)
+
+pdata <- plm::pdata.frame(df6, index = c("ent", "year"))
+
+model_fe_plm <- plm(fe_formula, data = pdata, model = "within")
+model_re     <- plm(fe_formula, data = pdata, model = "random")
+
+hausman_test <- phtest(model_fe_plm, model_re)
+print(hausman_test)
+
+plm::pwartest(model_fe_plm)
