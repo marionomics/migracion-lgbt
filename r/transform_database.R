@@ -49,7 +49,7 @@ df3 <- df2 %>%
 
 shf <- readxl::read_excel("data/SHF_Vivienda/Indice SHF datos abiertos 1_trim_2022.xlsx")
 
-names(shf)[6] <- "Year"
+names(shf)[6] <- "Year" # Hay un problema con unicode en ocasiones. Es mas fácil evitar el uso de la ñ
 
 global <- c("Nacional", "Nueva", "Usada",
             "Casa sola", "Casa en condominio - depto.",
@@ -59,9 +59,10 @@ global <- c("Nacional", "Nueva", "Usada",
             "ZM Tijuana", "ZM Le<U+00F3>n", "ZM Quer<U+00E9>taro")
 
 states
-shf2 <- shf %>%
+# Cuidado en esta línea. Año puede causar problemas con el encoding
+shf2 <- shf %>% 
     filter(Trimestre == 1) %>%
-    filter(Year %in% 2017:2022)%>% # Año
+    filter(Year %in% 2017:2022)%>%
     filter(!Global %in% global) %>%
     filter(is.na(Municipio)) %>%
     select(c("Estado", "Indice")) %>%

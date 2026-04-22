@@ -29,6 +29,7 @@ model_fe <- lm_robust(formula = fe_formula,
 
 summary(model_fe)
 
+
 fe_formula_ne <- as.formula("from_non_equal ~ equal_marriage + dm_unemp + ent + lgbt + discrim + Vivienda")
 
 model_fe_ne <- lm_robust(formula = fe_formula_ne,
@@ -40,7 +41,17 @@ model_fe_ne <- lm_robust(formula = fe_formula_ne,
 summary(model_fe)
 
 
-## Prepare models for stargazer
+## Export initial models
+stargazer::stargazer(model_fe)
+model_fe %>%
+    tidy %>%
+    xtable::xtable()
+
+model_fe_ne %>%
+    tidy %>%
+    xtable::xtable()
+
+## Prepare models for stargazer (log-transformed, incremental specs)
 
 fe_formula1 <- as.formula("log(from_equal) ~ equal_marriage")
 fe_formula2 <- as.formula("log(from_equal) ~ equal_marriage + dm_unemp ")
